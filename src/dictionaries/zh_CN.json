@@ -1,0 +1,26 @@
+{
+  "theme": {
+    "toggle": "切换主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统"
+  },
+  "login": {
+    "welcome": "欢迎使用",
+    "loginWith3rdParty": "第三方平台",
+    "loginWithWeixin": "使用微信登录",
+    "userId": "账号",
+    "userIdPlaceholder": "请输入账号",
+    "password": "密码",
+    "forgotPassword": "忘记密码？",
+    "login": "登录",
+    "dontHaveAccount": "没有账号？",
+    "signUp": "注册",
+    "agreeToTerms": "登录即表示您同意我们的 ",
+    "termsOfService": "服务条款",
+    "and": " 和 ",
+    "privacyPolicy": "隐私政策",
+    "userIdRequired": "请输入正确的账号",
+    "passwordRequired": "请输入正确的密码"
+  }
+}
