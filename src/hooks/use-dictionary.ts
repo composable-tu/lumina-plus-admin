@@ -1,9 +1,10 @@
 import * as React from "react"
 import {getDictionary} from "@/app/dictionaries"
 import {getLocaleMatch} from "@/lib/utils"
+import {DictionaryInterface} from "@/dictionaries/dictionary-interface";
 
 export function useDictionary() {
-    const [dict, setDict] = React.useState<Dictionary | null>(null)
+    const [dict, setDict] = React.useState<DictionaryInterface | null>(null)
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
