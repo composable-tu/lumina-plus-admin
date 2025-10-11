@@ -38,9 +38,7 @@ function DictionaryInterfaceLoader(this: any, source: string) {
                 if (error) console.error(`执行出错: ${error}`); else console.log('i18n interface 已更新');
                 callback(null, source);
             });
-        } else {
-            callback(null, source);
-        }
+        } else callback(null, source);
     } catch (error) {
         console.error('读取文件或计算哈希时出错:', error);
         callback(null, source);

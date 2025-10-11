@@ -1,5 +1,6 @@
 export interface DictionaryInterface {
     theme: Theme;
+    main:  Main;
     login: Login;
 }
 
@@ -22,9 +23,22 @@ export interface Login {
     passwordRequired:  string;
 }
 
+export interface Main {
+    function: Function;
+}
+
+export interface Function {
+    home:        string;
+    activity:    string;
+    todo:        string;
+    institution: string;
+}
+
 export interface Theme {
-    toggle: string;
-    light:  string;
-    dark:   string;
-    system: string;
+    toggle:    string;
+    light:     string;
+    dark:      string;
+    lightMode: string;
+    darkMode:  string;
+    system:    string;
 }

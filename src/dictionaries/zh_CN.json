@@ -3,7 +3,17 @@
     "toggle": "切换主题",
     "light": "浅色",
     "dark": "深色",
+    "lightMode": "浅色模式",
+    "darkMode": "深色模式",
     "system": "跟随系统"
+  },
+  "main": {
+    "function": {
+      "home": "首页",
+      "activity": "活动",
+      "todo": "待办",
+      "institution": "单位"
+    }
   },
   "login": {
     "welcome": "欢迎使用",
