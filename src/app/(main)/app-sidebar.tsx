@@ -5,14 +5,27 @@ import {
     SidebarContent,
     SidebarFooter,
     SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubButton,
+    SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import {Calendar, ChevronsUpDown, Home, Inbox, Moon, Search, Sun} from "lucide-react";
+import {
+    Calendar,
+    ChevronRight,
+    ChevronsUpDown,
+    Home,
+    Inbox,
+    Landmark,
+    ListTodo,
+    Moon,
+    Search,
+    Sun,
+    Zap
+} from "lucide-react";
 import {useDictionary} from "@/hooks/use-dictionary";
 import {
     DropdownMenu,
@@ -23,6 +36,7 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import {useTheme} from "next-themes";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/components/ui/collapsible";
 
 export function AppSidebar() {
     const {dict, loading} = useDictionary();
@@ -30,7 +44,7 @@ export function AppSidebar() {
 
     if (loading || !dict) return null;
 
-    const items = [{
+    const placeholderItems = [{
         title: dict.main.function.home, url: "#", icon: Home,
     }, {
         title: dict.main.function.activity, url: "#", icon: Inbox,
@@ -55,23 +69,111 @@ export function AppSidebar() {
 
     return (<Sidebar collapsible="icon">
         <SidebarHeader>
-
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton size="lg" asChild>
+                        <div>
+                            <div
+                                className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                                <div style={{backgroundImage: "url('/LuminaLOGO.svg')"}}
+                                     className="size-5 bg-center bg-contain bg-no-repeat"/>
+                            </div>
+                            <div className="flex flex-col gap-0.5 leading-none">
+                                <span className="font-medium">{process.env.SITE_NAME}</span>
+                                <span className="text-xs">{process.env.SITE_ORG}</span>
+                            </div>
+                        </div>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
         </SidebarHeader>
         <SidebarContent>
             <SidebarGroup>
-                <SidebarGroupLabel>Application</SidebarGroupLabel>
-                <SidebarGroupContent>
-                    <SidebarMenu>
-                        {items.map((item) => (<SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton asChild>
-                                <a href={item.url}>
-                                    <item.icon/>
-                                    <span>{item.title}</span>
-                                </a>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>))}
-                    </SidebarMenu>
-                </SidebarGroupContent>
+                <SidebarMenu>
+                    <SidebarMenuItem key={dict.main.function.home}>
+                        <SidebarMenuButton asChild>
+                            <a href='#'>
+                                <Home/>
+                                <span>{dict.main.function.home}</span>
+                            </a>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+                <SidebarMenu>
+                    <Collapsible key={dict.main.function.activity} asChild defaultOpen={true}
+                                 className="group/collapsible">
+                        <SidebarMenuItem>
+                            <CollapsibleTrigger asChild>
+                                <SidebarMenuButton tooltip={dict.main.function.activity}>
+                                    <Zap/>
+                                    <span>{dict.main.function.activity}</span>
+                                    <ChevronRight
+                                        className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"/>
+                                </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                                <SidebarMenuSub>
+                                    {placeholderItems?.map((subItem) => (<SidebarMenuSubItem key={subItem.title}>
+                                        <SidebarMenuSubButton asChild>
+                                            <a href={subItem.url}>
+                                                <span>占位</span>
+                                            </a>
+                                        </SidebarMenuSubButton>
+                                    </SidebarMenuSubItem>))}
+                                </SidebarMenuSub>
+                            </CollapsibleContent>
+                        </SidebarMenuItem></Collapsible>
+                </SidebarMenu>
+                <SidebarMenu>
+                    <Collapsible key={dict.main.function.todo} asChild defaultOpen={true}
+                                 className="group/collapsible">
+                        <SidebarMenuItem>
+                            <CollapsibleTrigger asChild>
+                                <SidebarMenuButton tooltip={dict.main.function.todo}>
+                                    <ListTodo/>
+                                    <span>{dict.main.function.todo}</span>
+                                    <ChevronRight
+                                        className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"/>
+                                </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                                <SidebarMenuSub>
+                                    {placeholderItems?.map((subItem) => (<SidebarMenuSubItem key={subItem.title}>
+                                        <SidebarMenuSubButton asChild>
+                                            <a href={subItem.url}>
+                                                <span>占位</span>
+                                            </a>
+                                        </SidebarMenuSubButton>
+                                    </SidebarMenuSubItem>))}
+                                </SidebarMenuSub>
+                            </CollapsibleContent>
+                        </SidebarMenuItem></Collapsible>
+                </SidebarMenu>
+                <SidebarMenu>
+                    <Collapsible key={dict.main.function.institution} asChild defaultOpen={true}
+                                 className="group/collapsible">
+                        <SidebarMenuItem>
+                            <CollapsibleTrigger asChild>
+                                <SidebarMenuButton tooltip={dict.main.function.institution}>
+                                    <Landmark/>
+                                    <span>{dict.main.function.institution}</span>
+                                    <ChevronRight
+                                        className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90"/>
+                                </SidebarMenuButton>
+                            </CollapsibleTrigger>
+                            <CollapsibleContent>
+                                <SidebarMenuSub>
+                                    {placeholderItems?.map((subItem) => (<SidebarMenuSubItem key={subItem.title}>
+                                        <SidebarMenuSubButton asChild>
+                                            <a href={subItem.url}>
+                                                <span>占位</span>
+                                            </a>
+                                        </SidebarMenuSubButton>
+                                    </SidebarMenuSubItem>))}
+                                </SidebarMenuSub>
+                            </CollapsibleContent>
+                        </SidebarMenuItem></Collapsible>
+                </SidebarMenu>
             </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>

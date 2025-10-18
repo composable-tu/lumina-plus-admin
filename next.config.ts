@@ -3,7 +3,9 @@ import path from "path";
 
 const nextConfig: NextConfig = {
     /* config options here */
-    webpack: (config, {dev}) => {
+    env: {
+        SITE_NAME: process.env.SITE_NAME, SITE_ORG: process.env.SITE_ORG,
+    }, webpack: (config, {dev}) => {
         if (dev) {
             const jsonRuleIndex = config.module.rules.findIndex((rule: any) => rule.test && rule.test.toString().includes('json'));
 
